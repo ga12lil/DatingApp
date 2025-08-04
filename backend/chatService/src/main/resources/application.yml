@@ -1,5 +1,12 @@
+server:
+  port: 9090
+
 spring:
   data:
     mongodb:
       database: chat_service
       port: 27018
+
+auth:
+  service:
+    url: http://localhost:8080

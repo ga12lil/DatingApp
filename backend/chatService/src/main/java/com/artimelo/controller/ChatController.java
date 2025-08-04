@@ -9,20 +9,27 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.security.Principal;
 
 @Controller
 @RequiredArgsConstructor
 public class ChatController {
 
-    private SimpMessagingTemplate messagingTemplate;
-    private ChatMessageService chatMessageService;
-    private ChatRoomService chatRoomService;
+    private final SimpMessagingTemplate messagingTemplate;
+    private final ChatMessageService chatMessageService;
+    private final ChatRoomService chatRoomService;
 
     @MessageMapping("/chat")
-    public void processMessage(@Payload ChatMessage chatMessage) {
+    public void processMessage(@Payload ChatMessage chatMessage, Principal principal) {
+
+        if (!chatMessage.getSenderId().equals(principal.getName())) {
+            throw new AccessDeniedException("You cannot send as another user");
+        }
         var chatId = chatRoomService
                 .getChatId(chatMessage.getSenderId(), chatMessage.getRecipientId(), true);
         chatMessage.setChatId(chatId.get());

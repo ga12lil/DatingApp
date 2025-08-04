@@ -17,9 +17,9 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ChatMessageService {
-    private ChatMessageRepository repository;
-    private ChatRoomService chatRoomService;
-    private MongoOperations mongoOperations;
+    private final ChatMessageRepository repository;
+    private final ChatRoomService chatRoomService;
+    private final MongoOperations mongoOperations;
 
     public ChatMessage save(ChatMessage chatMessage) {
         chatMessage.setStatus(MessageStatus.RECEIVED);

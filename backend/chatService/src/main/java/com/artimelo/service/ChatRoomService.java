@@ -11,7 +11,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ChatRoomService {
 
-    private ChatRoomRepository chatRoomRepository;
+    private final ChatRoomRepository chatRoomRepository;
 
     public Optional<String> getChatId(String senderId, String recipientId, boolean createIfNotExist) {
 

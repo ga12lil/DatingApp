@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  mongo-chat:
+    image: mongo:6
+    container_name: mongo-chat
+    restart: always
+    ports:
+      - "27018:27017"  # Внешний порт 27018 -> Внутренний Mongo 27017
+    environment:
+      MONGO_INITDB_DATABASE: chat_service
+    volumes:
+      - mongo-chat-data:/data/db
+
+volumes:
+  mongo-chat-data:
