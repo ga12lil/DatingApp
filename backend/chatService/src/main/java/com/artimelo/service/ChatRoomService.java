@@ -5,6 +5,7 @@ import com.artimelo.repository.ChatRoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,5 +44,9 @@ public class ChatRoomService {
 
                     return Optional.of(chatId);
                 });
+    }
+
+    public List<ChatRoom> getChatsBySenderId(String senderId) {
+        return chatRoomRepository.findBySenderId(senderId);
     }
 }

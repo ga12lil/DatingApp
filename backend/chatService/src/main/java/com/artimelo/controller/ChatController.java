@@ -1,7 +1,7 @@
 package com.artimelo.controller;
 
 import com.artimelo.model.ChatMessage;
-import com.artimelo.model.ChatNotification;
+import com.artimelo.dto.ChatNotification;
 import com.artimelo.service.ChatMessageService;
 import com.artimelo.service.ChatRoomService;
 import lombok.RequiredArgsConstructor;
@@ -63,5 +63,11 @@ public class ChatController {
     public ResponseEntity<?> findMessage ( @PathVariable String id) {
         return ResponseEntity
                 .ok(chatMessageService.findById(id));
+    }
+
+    @GetMapping("/chats/{senderId}")
+    public ResponseEntity<?> findChats (@PathVariable String senderId) {
+        return ResponseEntity
+                .ok(chatRoomService.getChatsBySenderId(senderId));
     }
 }

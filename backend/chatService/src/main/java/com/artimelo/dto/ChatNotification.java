@@ -1,4 +1,4 @@
-package com.artimelo.model;
+package com.artimelo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

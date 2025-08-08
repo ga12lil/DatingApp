@@ -49,7 +49,7 @@ public class SecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**").permitAll()  // login, register открыты
+                        .requestMatchers("/swagger-ui/**").permitAll()  // swagger
                         .requestMatchers("/ws/**").permitAll()
                         .anyRequest().authenticated()             // всё остальное — с токеном
                 )
