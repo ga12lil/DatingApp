@@ -40,7 +40,8 @@ public class ChatController {
                 new ChatNotification(
                         saved.getId(),
                         saved.getSenderId(),
-                        saved.getSenderName()));
+                        saved.getSenderName(),
+                        saved.getContent()));
     }
 
     @GetMapping("/messages/{senderId}/{recipientId}/count")

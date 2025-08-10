@@ -171,7 +171,7 @@
 
             stompClient.subscribe(`/user/${userId}/queue/messages`, (msg) => {
                 const body = JSON.parse(msg.body);
-                appendMessage(`From ${body.senderId}`, body.senderId !== userId ? "other" : "me");
+                appendMessage(`From ${body.senderId} ${body.content}`, body.senderId !== userId ? "other" : "me");
             });
 
             loadHistory();
